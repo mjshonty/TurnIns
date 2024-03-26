@@ -185,11 +185,14 @@ def guess_check(guess): #function checks if the user's guess is in the solution 
        return (answer)
 
 def user_guess(): #function asks the user for input and returns it for assignment to a variable
-    guess = textinput("Enter guess", "What is your guess?").lower()
+    guess = textinput("Enter guess", "What is your guess?")
     ##guess = textinput("your guess", "What is your guess?  ")
     if guess == "exit":
         sys.exit()
-    return(guess)
+    elif guess is None:
+        return(guess)
+    else:
+        return(guess).lower()
 
 def letter_places(word, letter): #function takes the word to guess locates what position the letters are in then compares the users input to find out what position the guess is in
     places = []
