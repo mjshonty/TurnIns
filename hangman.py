@@ -1,10 +1,7 @@
 import sys
 from turtle import *
 
-speed(6)
-
-#screen=Screen()
-#screen.setup(width=1000, height=2000) 
+speed(7)
 
 
 #draw gallows function
@@ -156,22 +153,30 @@ def draw_correct_letter():#rewrites the correct guesses line to show any updated
     t2.write(progress, font=("Arial", 40, "normal"))
   
 
-#draw incorrect letters function
-def draw_incorrect_letter():#not sure how to get this to work, want it to write incorrect letters at bottom
-    t4 = t.clone()
+
+t4 = t.clone()
+def draw_number_of_guesses():#tell user the remaining number of guesses
     t4.penup()
     t4.goto(x=-400, y=-400)
     t4.pendown()
-    t4.write("these are incorrect letters", font=("Arial", 20, "normal"))
+    t4.clear()
+    t4.write("You can only get "+ str(remaining_guesses) + " more guesses wrong!", font=("Arial", 20, "normal"))
     t4.penup()
 
+def lose_screen():#Tell user when they've lost
+    t4.penup()
+    t4.goto(x=-400, y=-400)
+    t4.pendown()
+    t4.clear()
+    t4.pencolor("red")
+    t4.write("You're out of guesses. The word was " + word , font=("Arial", 20, "normal"))
+    t4.penup()
 
-def thats_correct():#I can it this to write but it stays in the corner even if a user gets it wrong
-    t7 = t.clone()
-    t7.penup()
-    t7.goto(x=200, y=400)
-    t7.pendown()
-    t7.write("That's correct!", font=("Arial", 20, "normal"))
+def win():
+    t4.pendown()
+    t4.clear()
+    t4.pencolor("forest green")
+    t4.write("YOU WIN", font=("Arial", 40, "normal"))
 
     
 
@@ -186,13 +191,13 @@ def guess_check(guess): #function checks if the user's guess is in the solution 
 
 def user_guess(): #function asks the user for input and returns it for assignment to a variable
     guess = textinput("Enter guess", "What is your guess?")
-    ##guess = textinput("your guess", "What is your guess?  ")
     if guess == "exit":
         sys.exit()
     elif guess is None:
         return(guess)
     else:
         return(guess).lower()
+
 
 def letter_places(word, letter): #function takes the word to guess locates what position the letters are in then compares the users input to find out what position the guess is in
     places = []
@@ -238,6 +243,7 @@ remaining_guesses = 5 #give the user a total of 5 guesses
 gallows()
 rope()
 setup_correct_letter()
+draw_number_of_guesses()
 
 
 while remaining_guesses != 0: #while the user hasn't used all their guesses
@@ -251,25 +257,27 @@ while remaining_guesses != 0: #while the user hasn't used all their guesses
             in_progress[place] = uguess
             progress = ','.join(in_progress)
             draw_correct_letter()
-        #call function to draw the letters we should be able to use value in places to know where to draw letter
+    
+    #call function to draw the letters we should be able to use value in places to know where to draw letter
     else: #if the the value of variable is no
         remaining_guesses = remaining_guesses + subract_guess(letter_exists) #set the reamining_guesses variable to itself - 1 so that we use up a guess
         if remaining_guesses == 4:
             head()
             body()
+            draw_number_of_guesses()
         elif remaining_guesses == 3:
             left_arm()
+            draw_number_of_guesses()
         elif remaining_guesses == 2:
             right_arm()
+            draw_number_of_guesses()
         elif remaining_guesses == 1:
             right_leg()
+            draw_number_of_guesses()
         elif remaining_guesses == 0: #once we have 0 guesses remaining
             left_leg()
-            print("You lose") #tell the user they've lost and close the game
-        else: #if they still have guesses remaining
-            print("you can only get "+ str(remaining_guesses) + " more wrong answers") #Let the user know they only have so many wrong guesses left
-            dplaces = places
-            #call function to draw whatever parts of the hangman need to be drawn based on value in guesses_reamining
-            #call function to show guessed letter based on value in uguess
-
+            lose_screen()
+    if in_progress == solution:
+        win()
+        break
 done()
