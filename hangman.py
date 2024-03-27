@@ -1,6 +1,8 @@
 import sys
 from turtle import *
 
+screen=Screen()
+screen.setup(width=1.00, height=1.00) 
 speed(7)
 
 
