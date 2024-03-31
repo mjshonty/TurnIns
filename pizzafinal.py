@@ -2,7 +2,7 @@ import random
 
 from turtle import *
 
-speed(0)
+speed(7)
 
 screen=Screen()
 screen.setup(width=500, height=500)
@@ -75,7 +75,7 @@ def dpepperoni():
             goto(random_coordinates())
             begin_fill()
             fillcolor("red")
-            for i in range(3):
+            for i in range(1):
                 circle(40)
             end_fill()
    
@@ -86,7 +86,7 @@ def dsausage():
             goto(random_coordinates())
             begin_fill()
             fillcolor("brown")
-            for i in range(3):
+            for i in range(1):
                 circle(30)
             end_fill()
 
@@ -96,7 +96,7 @@ def dgreenpepper():
         goto(random_coordinates())
         begin_fill()
         fillcolor("green")
-        for i in range(3):
+        for i in range(1):
             forward(30)
             right(90)
             forward(15)
@@ -114,7 +114,7 @@ def dpineapple():
         goto(random_coordinates())
         begin_fill()
         fillcolor("yellow") 
-        for i in range(3):
+        for i in range(1):
                 forward(30)
                 left(120)
         end_fill()
@@ -125,7 +125,7 @@ def dham():
         goto(random_coordinates())
         begin_fill()
         fillcolor("pink") 
-        for i in range(3):
+        for i in range(1):
                 forward(30)
                 left(120)
         end_fill()
