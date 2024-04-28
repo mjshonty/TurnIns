@@ -2,7 +2,7 @@ import random
 
 from turtle import *
 
-speed(7)
+speed(0)
 
 screen=Screen()
 screen.setup(width=500, height=500)
@@ -114,7 +114,7 @@ def dpineapple():
         goto(random_coordinates())
         begin_fill()
         fillcolor("yellow") 
-        for i in range(1):
+        for i in range(3):
                 forward(30)
                 left(120)
         end_fill()
@@ -125,7 +125,7 @@ def dham():
         goto(random_coordinates())
         begin_fill()
         fillcolor("pink") 
-        for i in range(1):
+        for i in range(3):
                 forward(30)
                 left(120)
         end_fill()
@@ -186,6 +186,10 @@ toppingsnumber = random.randrange(1,5)
 ptoppings = (random.sample(toppingslist,toppingsnumber))
 
 pizza_list(pshape, psauce, pcheese, ptoppings)
+
+print(psauce)
+print(pcheese)
+print(ptoppings)
 
 
 hideturtle()
