@@ -271,6 +271,7 @@ while True:
         wrong_path.goto(20, 100)#dying sun
         wrong_path.pendown()
         wrong_path.goto(20, 400)#imperial garrison
+        narrative(area)
         game_over()
         break
     
